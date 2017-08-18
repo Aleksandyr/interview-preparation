@@ -56,6 +56,28 @@ namespace Interviewer.WebApi.Controllers
             return Error("Unexpected error");
         }
 
+        [HttpPost("sign-in")]
+        public async Task<IActionResult> SignIn([FromBody] Credentials credentials)
+        {
+            if(ModelState.IsValid)
+            {
+                var result = await this._signInManager.PasswordSignInAsync(credentials.Email, credentials.Password, false, false);
+                if(result.Succeeded)
+                {
+                    var user = await this._userManager.FindByEmailAsync(credentials.Email);
+                    return new JsonResult(new Dictionary<string, object>
+                    {
+                        { "access_token", GetAccessToken(credentials.Email) },
+                        { "id_token", GetIdToken(user) }
+                    });
+                }
+
+                return new JsonResult("Unable to sign in") { StatusCode = 401 };
+            }
+
+            return Error("Unexpected error");
+        }
+
         private string GetIdToken(IdentityUser user)
         {
             var payload = new Dictionary<string, object>
