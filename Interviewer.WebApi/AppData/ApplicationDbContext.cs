@@ -17,14 +17,14 @@ namespace Interviewer.WebApi.AppData
             base.OnModelCreating(builder);
 
             builder.Entity<IdentityUser>().ToTable("Users");
-            // builder.Entity<IdentityUserRole>().ToTable("UserRoles");
-            // builder.Entity<IdentityUserLogin>().ToTable("UserLogins");
-            // builder.Entity<IdentityUserClaim>().ToTable("UserClaims");
             builder.Entity<IdentityRole>().ToTable("Roles");
-
-            // builder.ApplyConfiguration(new UserListMap());
         }
+        public DbSet<Category> Categories { get; set; }
 
         public DbSet<Question> Questions { get; set; }
+
+        public DbSet<Answer> Answers { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
     }
 }

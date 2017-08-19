@@ -14,8 +14,11 @@ namespace Interviewer.WebApi.AppData
                 return;
             }
 
-            context.Questions.Add(new Question(0, "Question"));
-            context.SaveChanges();
+            // context.Questions.Add(new Question { Title = "Question" });
+            // context.Questions.Add(new Question { Title = "Question1" });
+            // context.Questions.Add(new Question { Title = "Question2" });
+            // context.Questions.Add(new Question { Title = "Question3" });
+            // context.SaveChanges();
         }
     }
 }

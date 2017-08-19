@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Interviewer.WebApi.AppData;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     [Route("api/[controller]")]
@@ -14,10 +15,10 @@
             : base(context) {}
 
         // GET api/values
-        [HttpGet(Name = "get")]
+        [HttpGet]
         public IActionResult Get()
         {
-            var questions = _context.Questions.ToList();
+            var questions = context.Questions.FirstOrDefault(x => x.Id == 2);
             if(questions == null) 
             {
                 return NotFound();

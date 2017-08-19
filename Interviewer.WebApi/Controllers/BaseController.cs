@@ -7,11 +7,11 @@ namespace Interviewer.WebApi.Controllers
 {
     public class BaseController : Controller 
     {
-        public readonly ApplicationDbContext _context;
+        public readonly ApplicationDbContext context;
 
         public BaseController(ApplicationDbContext context)
         {
-            _context = context;
+            this.context = context;
         }
     }
 }

@@ -14,6 +14,7 @@ namespace Interviewer.WebApi.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Options;
 
+
     [Route("api/[controller]")]
     public class AccountController : BaseController
     {
@@ -42,7 +43,7 @@ namespace Interviewer.WebApi.Controllers
                 var result = await this._userManager.CreateAsync(user, credentials.Password);
                 if(result.Succeeded)
                 {
-                    await this._signInManager.SignInAsync(user, isPersistent: false);
+                    await this._signInManager.SignInAsync(user, isPersistent: false, authenticationMethod: Constants.COOKIE_AUTH_SCHEME);
                     return new JsonResult(new Dictionary<string, object>
                     {
                         { "access_token", GetAccessToken(credentials.Email) },
@@ -76,6 +77,18 @@ namespace Interviewer.WebApi.Controllers
             }
 
             return Error("Unexpected error");
+        }
+
+        [HttpGet("forbidden")]
+        public IActionResult Forbidden() 
+        {
+            return StatusCode(403);
+        }
+
+        [HttpGet("unauthorize")]
+        public IActionResult Unauthorize() 
+        {
+            return Unauthorized();
         }
 
         private string GetIdToken(IdentityUser user)
