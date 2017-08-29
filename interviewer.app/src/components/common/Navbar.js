@@ -1,39 +1,49 @@
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom'
+import NavItems from '../common/navbar/NavItems'
 
 class Navbar extends Component {
-    render () {
-        return (
-          <div id="section-topbar">
-            <div id="topbar-inner">
-              <div className="container">
-                <div className="row">
-                  <div className="dropdown">
-                    <ul id="nav" className="nav">
-                      <li className="menu-item">
-                        <a className="smoothScroll" href="#about" title="About"><i className="icon-user"></i></a>
-                      </li>
-                      <li className="menu-item">
-                        <a className="smoothScroll" href="#resume" title="Resume"><i className="icon-file"></i></a>
-                      </li>
-                      <li className="menu-item">
-                        <a className="smoothScroll" href="#work" title="Works"><i className="icon-briefcase"></i>
-                      </a></li>
-                      <li className="menu-item">
-                        <a className="smoothScroll" href="#contact" title="Contact"><i className="icon-envelope"></i></a>
-                      </li>
-                    </ul>
-                  </div>
+  constructor (props) {
+    super (props)
 
-                  <div className="clear"></div>
-                </div>
-              </div>
+    this.state = {
+      icon: {
+        firstIconClass: 'icon-user',
+        secondIconClass: 'icon-file',
+        thirdIconClass: 'icon-briefcase',
+        fourthIconClass: 'icon-envelope',
+      },
+      navitem: {
+        firstNavItemHref: "#about",
+        secondNavItemHref: "#resume",
+        thirdNavItemHref: "#work",
+        fourthNavItemHref: "#contact",
 
-              <div className="clear"></div>
-            </div>
-          </div>
-        )
+        firstNavItemTitle: "About",
+        secondNavItemTitle: "Resume",
+        thirdNavItemTitle: "Work",
+        fourthNavItemTitle: "Contact",
+      }
     }
+  }
+  render () {
+      return (
+        <div id="section-topbar">
+          <div id="topbar-inner">
+            <div className="container">
+              <div className="row">
+                <div className="dropdown">
+                  <NavItems navitem={this.state.navitem} icon={this.state.icon} />
+                </div>
+
+                <div className="clear"></div>
+              </div>
+            </div>
+
+            <div className="clear"></div>
+          </div>
+        </div>
+      )
+  }
 }
 
 export default Navbar
