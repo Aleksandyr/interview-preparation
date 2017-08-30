@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import NavItems from '../common/navbar/NavItems'
+import NavItems from './common/navbar/NavItems'
 
 class Navbar extends Component {
   constructor (props) {
