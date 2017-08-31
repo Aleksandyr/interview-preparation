@@ -147,6 +147,19 @@ a:after {
 #section-topbar i {
 	font-size: 25px;
 }
+
+#category-bar {
+	left: 0;
+	right: 0;
+	z-index: 10000;
+	overflow: visible;
+	font: normal 16px/24px  'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#category-bar ul#nav > li {
+	display: inline-block;
+    padding-right: 50px;
+}
 /*---------------------------------------------------
 	SECTION WRAPS
 ---------------------------------------------------*/

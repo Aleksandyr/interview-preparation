@@ -6,25 +6,27 @@ class Navbar extends Component {
     super (props)
 
     this.state = {
-      icon: {
-        firstIconClass: 'icon-user',
-        secondIconClass: 'icon-file',
-        thirdIconClass: 'icon-briefcase',
-        fourthIconClass: 'icon-envelope',
-      },
-      navitem: {
-        firstNavItemHref: "#about",
-        secondNavItemHref: "#resume",
-        thirdNavItemHref: "#work",
-        fourthNavItemHref: "#contact",
-
-        firstNavItemTitle: "About",
-        secondNavItemTitle: "Resume",
-        thirdNavItemTitle: "Work",
-        fourthNavItemTitle: "Contact",
-      }
+      iconClasses: [
+        { iconClass: 'icon-user' },
+        { iconClass: 'icon-file' },
+        { iconClass: 'icon-briefcase' },
+        { iconClass: 'icon-envelope' },
+      ],
+      navitemHrefs:[
+        { navItemHref: '#about' },
+        { navItemHref: '#resume' },
+        { navItemHref: '#work' },
+        { navItemHref: '#contact' },
+      ],
+      navitemTitles: [
+        { navitemTitle: 'About' },
+        { navitemTitle: 'Resume' },
+        { navitemTitle: 'Work' },
+        { navitemTitle: 'Contact' },
+      ]
     }
   }
+
   render () {
       return (
         <div id="section-topbar">
@@ -32,7 +34,7 @@ class Navbar extends Component {
             <div className="container">
               <div className="row">
                 <div className="dropdown">
-                  <NavItems navitem={this.state.navitem} icon={this.state.icon} />
+                  <NavItems navitemHrefs={this.state.navitemHrefs} navitemTitles={this.state.navitemTitles} iconClasses={this.state.iconClasses} />
                 </div>
 
                 <div className="clear"></div>
