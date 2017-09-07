@@ -14,13 +14,13 @@ class Navbar extends Component {
       ],
       navitemHrefs:[
         { navItemHref: '#about' },
-        { navItemHref: '#resume' },
+        { navItemHref: '#interview-questions' },
         { navItemHref: '#work' },
         { navItemHref: '#contact' },
       ],
       navitemTitles: [
         { navitemTitle: 'About' },
-        { navitemTitle: 'Resume' },
+        { navitemTitle: 'interview-questions' },
         { navitemTitle: 'Work' },
         { navitemTitle: 'Contact' },
       ]

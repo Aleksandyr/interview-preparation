@@ -7,7 +7,7 @@
  */
 
 body {
-  background-color: #f2f2f2;
+  /* background-color: #f2f2f2; */
     font-family: "Lato";
     font-weight: 300;
     font-size: 16px;
@@ -22,6 +22,24 @@ h1, h2, h3, h4, h5, h6 {
     font-family: "Raleway";
     font-weight: 300;
     color: #333;
+}
+
+.accordion .title a, 
+.body-content a, 
+.body-content strong, .btn, 
+.font-gotham-medium, .header-navbar .nav .site-links a, 
+.nav-links a, .nav-pills>li>a, 
+.section-quote strong, dt, h3, h4, label {
+    font-family: "Gotham Medium",Helvetica,Arial,sans-serif;
+    font-weight: 600;
+}
+
+*, :after, :before {
+    box-sizing: border-box;
+}
+
+.bg-cloud, .bg-grey-lighter {
+    background-color: #f9f9f9;
 }
 
 
@@ -46,6 +64,7 @@ a {
     -o-transition: color 0.1s ease-in, background 0.1s ease-in;
     transition: color 0.1s ease-in, background 0.1s ease-in;
 }
+
 
 a:hover,
 a:focus {
@@ -154,6 +173,7 @@ a:after {
 	z-index: 10000;
 	overflow: visible;
 	font: normal 16px/24px  'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	padding-bottom: 30px
 }
 
 #category-bar ul#nav > li {
@@ -295,3 +315,104 @@ a:after {
 sm {
 	font-size: 12px;
 }
+
+.faq_question {
+    margin: 0px;
+    padding: 0px 0px 5px 0px;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
+}
+ 
+.question-container {	
+	width: 70%;
+	height: 10%;
+	margin: 0 auto;
+	background-color: #f2f2f2;
+	border: 2px solid #f9f9f9;
+	box-shadow: 0 1px 5px 0 rgba(0,0,0,.15);
+	position: relative;
+	margin-bottom: 20px;
+}
+
+.question-container > a {
+    color: #37a000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+	.question-inner-container {
+		overflow: hidden;
+		padding-top: 20px;
+		font-size: 25px;
+		line-height: 22px;
+		padding-right: 40px;
+		padding-left: 75px;
+		padding-bottom: 30px;
+	}
+
+	.answer-toggling {
+		font-size: 10px;
+		line-height: 10px;
+		margin-top: -27px;
+		display: block;
+		padding-top: 18px;
+		padding-bottom: 26px;
+		padding-left: 100px;
+		position: relative;
+		transition: all .3s ease;
+	}
+		.question-text {
+			color: black;
+		}
+
+	.question-mark {
+		position: absolute;
+		top: 20px;
+		left: 16px;
+
+	}
+	.answer-toggling::after {
+		content: "";
+		background: url(//www.upwork.com/static/marketing/adquiro-webpack/images/arrow.dd56dd79a55e.svg) 50% no-repeat;
+		display: inline-block;
+		position: absolute;
+		width: 14px;
+		height: 10px;
+		left: 75px;
+		top: 18px;
+		transition: all .3s ease;
+	}
+	
+	
+	.asnwer-content {
+		overflow: hidden;
+		position: relative;
+		transition: all .3s ease;
+		background-color: white;
+	}
+	.answer-icon {
+		position: absolute;
+		left: 16px;
+		top: 16px;
+		color: #b2b2b2;
+	}
+	
+	.answer-text {
+		padding-top: 50px;
+		padding-right: 40px;
+		padding-left: 75px;
+		padding-bottom: 60px;
+	}
+	
+.disabled {
+	display: none;
+}
+.text-grass {
+    color: #5bbc2e;
+}
+
+.text-uppercase {
+	text-transform: uppercase;
+}
+

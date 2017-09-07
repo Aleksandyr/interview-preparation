@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Navbar from './components/Navbar'
-import Routes from './components/common/routes/Routes'
 import Header from './components/Header'
 import About from './components/About'
 import CategoryNavbar from './components/CategoryNavbar'
+import InterviewQuestion from './components/InterviewQuestion'
+
 import './App.css';
 
 class App extends Component {
@@ -14,6 +15,7 @@ class App extends Component {
         <Header />
         <About />
         <CategoryNavbar />
+        <InterviewQuestion />
       </div>
     );
   }
