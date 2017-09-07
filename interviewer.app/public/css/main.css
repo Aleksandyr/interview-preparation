@@ -372,7 +372,7 @@ sm {
 		left: 16px;
 
 	}
-	.answer-toggling::after {
+	.see-answer::after {
 		content: "";
 		background: url(//www.upwork.com/static/marketing/adquiro-webpack/images/arrow.dd56dd79a55e.svg) 50% no-repeat;
 		display: inline-block;
@@ -382,6 +382,19 @@ sm {
 		left: 75px;
 		top: 18px;
 		transition: all .3s ease;
+	}
+
+	.hide-answer::after {
+		content: "";
+		background: url(//www.upwork.com/static/marketing/adquiro-webpack/images/arrow.dd56dd79a55e.svg) 50% no-repeat;
+		display: inline-block;
+		position: absolute;
+		width: 14px;
+		height: 10px;
+		left: 75px;
+		top: 18px;
+		transition: all .3s ease;
+		transform: rotate(-180deg);
 	}
 	
 	
