@@ -1,3 +1,5 @@
+/* global fetch:false */
+/* global URL:false */
 // In production, we register a service worker to serve assets from local cache.
 
 // This lets the app load faster on subsequent visits in production, and gives
@@ -99,10 +101,10 @@ function checkValidServiceWorker (swUrl) {
     })
 }
 
-export function unregister() {
+export function unregister () {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready.then(registration => {
-      registration.unregister();
-    });
+      registration.unregister()
+    })
   }
 }
