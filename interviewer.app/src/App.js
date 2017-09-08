@@ -3,7 +3,7 @@ import Navbar from './components/Navbar'
 import Header from './components/Header'
 import About from './components/About'
 import CategoryNavbar from './components/CategoryNavbar'
-import InterviewQuestion from './components/InterviewQuestion'
+import InterviewQuestion from './components/questions/InterviewQuestion'
 
 import './App.css'
 

@@ -8,7 +8,7 @@
 
 body {
   /* background-color: #f2f2f2; */
-    font-family: "Lato";
+    font-family: 'Lato';
     font-weight: 300;
     font-size: 16px;
     color: #555;
@@ -19,7 +19,7 @@ body {
 
 /* Titles */
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Raleway";
+    font-family: 'Raleway';
     font-weight: 300;
     color: #333;
 }
@@ -30,7 +30,7 @@ h1, h2, h3, h4, h5, h6 {
 .font-gotham-medium, .header-navbar .nav .site-links a, 
 .nav-links a, .nav-pills>li>a, 
 .section-quote strong, dt, h3, h4, label {
-    font-family: "Gotham Medium",Helvetica,Arial,sans-serif;
+    font-family: 'Gotham Medium',Helvetica,Arial,sans-serif;
     font-weight: 600;
 }
 
@@ -103,7 +103,7 @@ a:after {
 	right: 0;
 	z-index: 10000;
 	overflow: visible;
-	font: normal 16px/24px  'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font: normal 16px/24px  'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 #section-topbar a {
@@ -119,7 +119,7 @@ a:after {
 /*
 	Top Bar
 
-	By default, top navigation bar uses "fixed" position
+	By default, top navigation bar uses 'fixed' position
 */
 #section-topbar ul#nav {
 	display: inline-block;
@@ -143,7 +143,7 @@ a:after {
 
 #section-topbar ul#nav a {
   display: block;
-  font: normal 11px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: normal 11px/18px 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-decoration: none;
   padding: 18px 20px 18px 20px;
   border-left: 1px solid #222;
@@ -172,7 +172,7 @@ a:after {
 	right: 0;
 	z-index: 10000;
 	overflow: visible;
-	font: normal 16px/24px  'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font: normal 16px/24px  'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	padding-bottom: 30px
 }
 
@@ -352,15 +352,11 @@ sm {
 	}
 
 	.answer-toggling {
-		font-size: 10px;
-		line-height: 10px;
-		margin-top: -27px;
-		display: block;
+		font-size: 15px;
+		/* display: block; */
 		padding-top: 18px;
-		padding-bottom: 26px;
 		padding-left: 100px;
 		position: relative;
-		transition: all .3s ease;
 	}
 		.question-text {
 			color: black;
@@ -373,26 +369,26 @@ sm {
 
 	}
 	.see-answer::after {
-		content: "";
+		content: '';
 		background: url(//www.upwork.com/static/marketing/adquiro-webpack/images/arrow.dd56dd79a55e.svg) 50% no-repeat;
 		display: inline-block;
 		position: absolute;
 		width: 14px;
 		height: 10px;
 		left: 75px;
-		top: 18px;
+		top: 21px;
 		transition: all .3s ease;
 	}
 
 	.hide-answer::after {
-		content: "";
+		content: '';
 		background: url(//www.upwork.com/static/marketing/adquiro-webpack/images/arrow.dd56dd79a55e.svg) 50% no-repeat;
 		display: inline-block;
 		position: absolute;
 		width: 14px;
 		height: 10px;
 		left: 75px;
-		top: 18px;
+		top: 21px;
 		transition: all .3s ease;
 		transform: rotate(-180deg);
 	}
@@ -428,4 +424,9 @@ sm {
 .text-uppercase {
 	text-transform: uppercase;
 }
+
+.align-right{
+  text-align: left;
+}
+
 

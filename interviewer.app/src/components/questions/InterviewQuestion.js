@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import QuestionItem from './common/question/QuestionItem'
+import QuestionItem from './QuestionItem'
 
 class InterviewQuestion extends Component {
   constructor (props) {
