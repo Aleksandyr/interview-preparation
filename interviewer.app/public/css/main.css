@@ -315,13 +315,20 @@ a:after {
 sm {
 	font-size: 12px;
 }
-
-.faq_question {
-    margin: 0px;
-    padding: 0px 0px 5px 0px;
-    display: inline-block;
-    cursor: pointer;
-    font-weight: bold;
+.login-container {
+  width: 80%;
+  margin: 0 auto;
+}
+.search-box{margin:80px auto;position:absolute;}
+.caption{margin-bottom:50px;}
+.loginForm input[type=text], .loginForm input[type=password]{
+	margin-bottom:10px;
+}
+.loginForm input[type=submit]{
+	background:#fb044a;
+	color:#fff;
+	font-weight:700;
+	
 }
  
 .question-container {	
@@ -353,7 +360,7 @@ sm {
 
 	.answer-toggling {
 		font-size: 15px;
-		/* display: block; */
+		cursor: pointer;
 		padding-top: 18px;
 		padding-left: 100px;
 		position: relative;
@@ -429,4 +436,20 @@ sm {
   text-align: left;
 }
 
+.login-form {
+  width: 50%;
+  margin: 0 auto;
+}
 
+#login-form {
+  width: 350px;
+  margin: 0 auto;
+}
+
+.login-form input[type=submit]{
+	background:#fb044a;
+	color:#fff;
+  font-weight:700;
+  margin-top: 20px;
+	
+}

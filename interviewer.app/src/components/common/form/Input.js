@@ -5,8 +5,9 @@ const Input = (props) => {
 
   return (
     <div>
-      <label htmlFor={props.name}>{props.palceHolder}</label>
+      <label htmlFor={props.name}>{props.placeholder}</label>
       <input
+        className='form-control'
         type={type}
         name={props.name}
         placeholder={props.placeholder}

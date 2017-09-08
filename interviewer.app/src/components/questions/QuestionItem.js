@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import AnswerItem from './AnswerItem'
+import Auth from '../common/user/Auth'
 
 class QuestionItem extends Component {
   constructor (props) {
@@ -16,6 +17,12 @@ class QuestionItem extends Component {
     this.state.disabled === true
         ? this.setState({disabled: false})
         : this.setState({disabled: true})
+  }
+
+  voteForQuestion () {
+    if (!Auth.isUserAuthenticated()) {
+      this.props.history.push('/login')
+    }
   }
 
   render () {
@@ -35,7 +42,8 @@ class QuestionItem extends Component {
               <span className={!this.state.disabled ? 'see-answer disabled' : 'see-answer'}>See The Answer</span>
               <span className={this.state.disabled ? 'hide-answer disabled' : 'hide-answer'}>Hide The Answer</span>
             </a>
-            <a className='delete_add btn btn-inverse btn-medium push-top'>
+            <a className='delete_add btn btn-inverse btn-medium push-top'
+              onClick={this.voteForQuestion.bind(this)}>
               <span className='pull-right'>
                 <i id='like1' className='glyphicon glyphicon-thumbs-up' /> <div id='like1-bs3' />
               </span>

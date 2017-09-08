@@ -25,6 +25,8 @@ class LoginUserPage extends Component {
 
   handleUserForm (event) {
     event.preventDefault()
+
+    this.props.history.push('/')
   }
 
   handleUserLogin (data) {

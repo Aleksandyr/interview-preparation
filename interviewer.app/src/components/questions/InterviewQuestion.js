@@ -43,7 +43,7 @@ class InterviewQuestion extends Component {
     var questions = 'No questions!'
     if (this.state.questions.length > 0) {
       questions = this.state.questions.map((element, index) => (
-        <QuestionItem key={index} questionText={this.state.questions[index].questionText}
+        <QuestionItem history={this.props.history} key={index} questionText={this.state.questions[index].questionText}
           answerText={this.state.answers[index].answerText} />
       ))
     }
