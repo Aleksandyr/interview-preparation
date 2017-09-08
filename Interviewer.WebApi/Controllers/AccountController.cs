@@ -35,6 +35,7 @@ namespace Interviewer.WebApi.Controllers
         }
 
         [HttpPost]
+        [HttpPost("sign-up")]
         public async Task<IActionResult> Register([FromBody] Credentials credentials)
         {
             if(ModelState.IsValid)

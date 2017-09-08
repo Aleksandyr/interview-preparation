@@ -64,6 +64,9 @@
             }
 
             app.UseAuthentication();
+
+            app.UseCors(builder =>
+              builder.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
             
             app.UseMvc();
         }
