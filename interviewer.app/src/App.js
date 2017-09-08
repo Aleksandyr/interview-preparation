@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import Navbar from './components/Navbar'
 import Header from './components/Header'
 import About from './components/About'
 import CategoryNavbar from './components/CategoryNavbar'
 import InterviewQuestion from './components/InterviewQuestion'
 
-import './App.css';
+import './App.css'
 
 class App extends Component {
-  render() {
+  render () {
     return (
-      <div className="App">
+      <div className='App'>
         <Navbar />
         <Header />
         <About />
         <CategoryNavbar />
         <InterviewQuestion />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
