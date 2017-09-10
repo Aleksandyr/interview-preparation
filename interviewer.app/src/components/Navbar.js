@@ -10,19 +10,22 @@ class Navbar extends Component {
         { iconClass: 'icon-user' },
         { iconClass: 'icon-file' },
         { iconClass: 'icon-briefcase' },
-        { iconClass: 'icon-envelope' }
+        { iconClass: 'icon-envelope' },
+        { iconClass: 'icon-signout' }
       ],
       navitemHrefs: [
         { navItemHref: '#about' },
         { navItemHref: '#interview-questions' },
         { navItemHref: '#work' },
-        { navItemHref: '#contact' }
+        { navItemHref: '#contact' },
+        { navItemHref: '/logout' }
       ],
       navitemTitles: [
         { navitemTitle: 'About' },
         { navitemTitle: 'interview-questions' },
         { navitemTitle: 'Work' },
-        { navitemTitle: 'Contact' }
+        { navitemTitle: 'Contact' },
+        { navitemTitle: 'Logout' }
       ]
     }
   }
@@ -36,11 +39,9 @@ class Navbar extends Component {
               <div className='dropdown'>
                 <NavItems navitemHrefs={this.state.navitemHrefs} navitemTitles={this.state.navitemTitles} iconClasses={this.state.iconClasses} />
               </div>
-
               <div className='clear' />
             </div>
           </div>
-
           <div className='clear' />
         </div>
       </div>

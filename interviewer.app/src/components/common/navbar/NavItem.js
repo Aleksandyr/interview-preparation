@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import Icon from './Icon'
 
 class NavItem extends Component {
@@ -23,9 +24,9 @@ class NavItem extends Component {
 
     return (
       <div>
-        <a className='smoothScroll' href={this.state.navItemHref} title={this.state.navItemTitle}>
+        <Link className='smoothScroll' to={this.state.navItemHref} title={this.state.navItemTitle}>
           { renderedElement }
-        </a>
+        </Link>
       </div>
     )
   }

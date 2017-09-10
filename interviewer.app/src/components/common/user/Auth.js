@@ -21,7 +21,8 @@ class Auth {
   }
 
   static isUserAuthenticated (token) {
-    return window.localStorage.getItem('token') !== null
+    return window.localStorage.getItem('token') !== null &&
+      window.localStorage.getItem('token') !== undefined
   }
 
   static deauthenticated (token) {
