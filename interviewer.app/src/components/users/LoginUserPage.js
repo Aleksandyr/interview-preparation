@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-// import Auth from '../common/user/Auth'
+import Auth from '../common/user/Auth'
 import LoginUserForm from './LoginUserForm'
 import FormHelpers from '../common/form/FormHelpers'
+import userActions from '../../actions/userActions'
+import userStore from '../../stores/UserStore'
 // import toastr from 'toastr'
 
 class LoginUserPage extends Component {
@@ -10,13 +12,25 @@ class LoginUserPage extends Component {
 
     this.state = {
       user: {
-        email: 'test@test.com',
+        email: 'user@user.com',
         password: '123456'
       },
       error: ''
     }
 
     this.handleUserLogin = this.handleUserLogin.bind(this)
+
+    userStore.on(
+      userStore.eventTypes.USER_LOGGED_IN,
+      this.handleUserLogin
+    )
+  }
+
+  componentWillUnmount () {
+    userStore.removeListener(
+      userStore.eventTypes.USER_LOGGED_IN,
+      this.handleUserLogin
+    )
   }
 
   handleUserChange (event) {
@@ -26,11 +40,19 @@ class LoginUserPage extends Component {
   handleUserForm (event) {
     event.preventDefault()
 
-    this.props.history.push('/')
+    userActions.login(this.state.user)
   }
 
   handleUserLogin (data) {
-    // TODO: Do some validation
+    if (!data.success) {
+      const firstError = 'error'
+      this.setState({error: firstError})
+    } else {
+      Auth.authenticateUser(data.token)
+      Auth.saveUser(data.user)
+      // toastr.success('Success')
+      this.props.history.push('/')
+    }
   }
 
   render () {

@@ -5,14 +5,14 @@ const baseUrl = 'http://localhost:5000/'
 const getOptions = () => ({
   mode: 'cors',
   headers: {
-    'Accept': 'applicaiton/json',
+    'Accept': 'application/json',
     'Content-Type': 'application/json'
   }
 })
 
 const handleJsonResponse = res => res.json()
 
-const appluAuthorizationHeader = (options, authenticated) => {
+const applyAthorizationHeader = (options, authenticated) => {
   if (authenticated) {
     options.headers.Authorization = `bearer ${Auth.getToken()}`
   }
@@ -24,7 +24,7 @@ class Data {
     options.method = 'POST'
     options.body = JSON.stringify(data)
 
-    appluAuthorizationHeader(options, authenticated)
+    applyAthorizationHeader(options, authenticated)
 
     return window.fetch(
       `${baseUrl}${url}`,
@@ -36,7 +36,7 @@ class Data {
     const options = getOptions()
     options.method = 'GET'
 
-    appluAuthorizationHeader(options, authenticated)
+    applyAthorizationHeader(options, authenticated)
 
     return window.fetch(
       `${baseUrl}${url}`,
