@@ -70,7 +70,8 @@ namespace Interviewer.WebApi.Controllers
                     return new JsonResult(new Dictionary<string, object>
                     {
                         { "access_token", GetAccessToken(credentials.Email) },
-                        { "id_token", GetIdToken(user) }
+                        { "id_token", GetIdToken(user) },
+                        { "success", true }
                     });
                 }
 
