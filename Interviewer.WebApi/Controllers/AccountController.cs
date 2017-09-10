@@ -36,10 +36,18 @@ namespace Interviewer.WebApi.Controllers
 
         [HttpPost]
         [HttpPost("sign-up")]
-        public async Task<IActionResult> Register([FromBody] Credentials credentials)
+        public async Task<IActionResult> Register([FromBody] RegisterCredentials credentials)
         {
             if(ModelState.IsValid)
             {
+                if(!credentials.Password.Equals(credentials.ConfirmPassword)) {
+                    return new JsonResult(new Dictionary<string, object>
+                    {
+                        { "message", "You have unmatched passwords!" },
+                        { "success", false }
+                    });
+                }
+
                 var user = new IdentityUser { UserName = credentials.Email, Email = credentials.Email };
                 var result = await this._userManager.CreateAsync(user, credentials.Password);
                 if(result.Succeeded)
@@ -48,18 +56,24 @@ namespace Interviewer.WebApi.Controllers
                     return new JsonResult(new Dictionary<string, object>
                     {
                         { "access_token", GetAccessToken(credentials.Email) },
-                        { "id_token", GetIdToken(user) }
+                        { "id_token", GetIdToken(user) },
+                        { "user", user },
+                        { "success", true }
                     });
                 }
 
-                return Errors(result);
+                return new JsonResult(new Dictionary<string, object>
+                {
+                    { "message", result.Errors.ToList()[0].Description },
+                    { "success", false }
+                });
             }
 
             return Error("Unexpected error");
         }
 
         [HttpPost("sign-in")]
-        public async Task<IActionResult> SignIn([FromBody] Credentials credentials)
+        public async Task<IActionResult> SignIn([FromBody] LoginCredentials credentials)
         {
             if(ModelState.IsValid)
             {
@@ -71,11 +85,16 @@ namespace Interviewer.WebApi.Controllers
                     {
                         { "access_token", GetAccessToken(credentials.Email) },
                         { "id_token", GetIdToken(user) },
+                        { "user", user },
                         { "success", true }
                     });
                 }
 
-                return new JsonResult("Unable to sign in") { StatusCode = 401 };
+                return new JsonResult(new Dictionary<string, object> 
+                {
+                    {"message", "Incorrect email or password!"},
+                    {"success", false }
+                }) {StatusCode = 401};
             }
 
             return Error("Unexpected error");
