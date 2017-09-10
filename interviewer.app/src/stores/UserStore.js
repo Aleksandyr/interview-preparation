@@ -18,7 +18,7 @@ class UserStore extends EventEmitter {
 
   handleAction (action) {
     switch (action.type) {
-      case userActions.types.REGISTER_UESR: {
+      case userActions.types.REGISTER_USER: {
         this.register(action.user)
         break
       }

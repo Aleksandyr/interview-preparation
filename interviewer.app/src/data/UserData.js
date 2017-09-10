@@ -4,7 +4,7 @@ const baseUrl = 'api/account'
 
 class UserData {
   static register (user) {
-    return Data.post(`${baseUrl}/register`, user)
+    return Data.post(`${baseUrl}/sign-up`, user)
   }
 
   static login (user) {
