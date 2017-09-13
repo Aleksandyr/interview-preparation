@@ -7,13 +7,14 @@ namespace Interviewer.WebApi.Controllers
     using Interviewer.WebApi.AppData;
     using Interviewer.WebApi.Common;
     using Interviewer.WebApi.Models.Account;
+    using Interviewer.WebApi.Models.OutputModels;
     using JWT;
     using JWT.Algorithms;
     using JWT.Serializers;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Options;
-
+    using Newtonsoft.Json;
 
     [Route("api/[controller]")]
     public class AccountController : BaseController
@@ -34,7 +35,6 @@ namespace Interviewer.WebApi.Controllers
             this._options = optionsAccessor.Value;
         }
 
-        [HttpPost]
         [HttpPost("sign-up")]
         public async Task<IActionResult> Register([FromBody] RegisterCredentials credentials)
         {
