@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events'
 import dispatcher from '../dispatcher'
-import userActions from '../actions/userActions'
+import UserActions from '../actions/UserActions'
 import UserData from '../data/UserData'
 
 class UserStore extends EventEmitter {
@@ -18,11 +18,11 @@ class UserStore extends EventEmitter {
 
   handleAction (action) {
     switch (action.type) {
-      case userActions.types.REGISTER_USER: {
+      case UserActions.types.REGISTER_USER: {
         this.register(action.user)
         break
       }
-      case userActions.types.LOGIN_USER: {
+      case UserActions.types.LOGIN_USER: {
         this.login(action.user)
         break
       }

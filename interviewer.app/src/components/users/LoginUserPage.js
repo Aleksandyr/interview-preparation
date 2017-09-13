@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import Auth from '../common/user/Auth'
 import LoginUserForm from './LoginUserForm'
 import FormHelpers from '../common/form/FormHelpers'
-import userActions from '../../actions/userActions'
-import userStore from '../../stores/UserStore'
+import UserActions from '../../actions/UserActions'
+import UserStore from '../../stores/UserStore'
 import toastr from 'toastr'
 
 class LoginUserPage extends Component {
@@ -21,15 +21,15 @@ class LoginUserPage extends Component {
 
     this.handleUserLogin = this.handleUserLogin.bind(this)
 
-    userStore.on(
-      userStore.eventTypes.USER_LOGGED_IN,
+    UserStore.on(
+      UserStore.eventTypes.USER_LOGGED_IN,
       this.handleUserLogin
     )
   }
 
   componentWillUnmount () {
-    userStore.removeListener(
-      userStore.eventTypes.USER_LOGGED_IN,
+    UserStore.removeListener(
+      UserStore.eventTypes.USER_LOGGED_IN,
       this.handleUserLogin
     )
   }
@@ -41,7 +41,7 @@ class LoginUserPage extends Component {
   handleUserForm (event) {
     event.preventDefault()
 
-    userActions.login(this.state.user)
+    UserActions.login(this.state.user)
   }
 
   handleUserLogin (data) {
