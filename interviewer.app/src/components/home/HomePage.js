@@ -13,7 +13,7 @@ class HomePage extends Component {
         <Header />
         <About />
         <CategoryNavbar />
-        <InterviewQuestions history={this.props.history} />
+        <InterviewQuestions history={this.props.history} location={this.props.location} />
       </div>
     )
   }
