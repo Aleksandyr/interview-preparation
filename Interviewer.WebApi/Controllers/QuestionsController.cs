@@ -18,12 +18,22 @@ namespace Interviewer.WebApi.Controllers
         [HttpGet("all")]
         public IActionResult getAllQuestions()
         {
-            var questions = this.context.Questions.Include(q => q.Answer).ToList();
+            // int itemsPerPage = 3;
+            // if (page >= 1) {
+              var questions = this.context.Questions
+                .Include(q => q.Answer)
+                .ToList();
 
-            return new JsonResult(new Dictionary<string, List<Question>>
-            {
-                { "questions", questions}
-            });
+              return new JsonResult(new Dictionary<string, List<Question>>
+              {
+                  { "questions", questions}
+              });
+            // }
+
+            // return new JsonResult(new Dictionary<string, List<Question>>
+            //   {
+            //       { "questions", new List<Question>() }
+            //   });
         }
     }
 }
