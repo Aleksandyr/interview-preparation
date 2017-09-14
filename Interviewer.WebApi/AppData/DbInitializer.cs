@@ -53,19 +53,75 @@ namespace Interviewer.WebApi.AppData
             if(!context.Questions.Any())
             {
                 context.Questions.Add(new Question 
-                    { Title = "What are the three main ways to add CSS to a webpage? Describe the advantages and disadvantages of each method.", 
+                    { Title = "1What are the three main ways to add CSS to a webpage? Describe the advantages and disadvantages of each method.", 
                         Answer = context.Answers.FirstOrDefault(a => a.Id == 1), Category = context.Categories.FirstOrDefault(c => c.Id == 1)}
                 );
                 context.Questions.Add(new Question 
-                    { Title = "What are the three main ways to add CSS to a webpage? Describe the advantages and disadvantages of each method.", 
+                    { Title = "2What are the three main ways to add CSS to a webpage? Describe the advantages and disadvantages of each method.", 
                         Answer = context.Answers.FirstOrDefault(a => a.Id == 2), Category = context.Categories.FirstOrDefault(c => c.Id == 1)}
                 );
                 context.Questions.Add(new Question 
-                    { Title = "What are the three main ways to add CSS to a webpage? Describe the advantages and disadvantages of each method.", 
+                    { Title = "3What are the three main ways to add CSS to a webpage? Describe the advantages and disadvantages of each method.", 
+                        Answer = context.Answers.FirstOrDefault(a => a.Id == 3), Category = context.Categories.FirstOrDefault(c => c.Id == 1)}
+                );
+                context.Questions.Add(new Question 
+                    { Title = "4What are the three main ways to add CSS to a webpage? Describe the advantages and disadvantages of each method.", 
+                        Answer = context.Answers.FirstOrDefault(a => a.Id == 3), Category = context.Categories.FirstOrDefault(c => c.Id == 1)}
+                );
+                context.Questions.Add(new Question 
+                    { Title = "5What are the three main ways to add CSS to a webpage? Describe the advantages and disadvantages of each method.", 
+                        Answer = context.Answers.FirstOrDefault(a => a.Id == 3), Category = context.Categories.FirstOrDefault(c => c.Id == 1)}
+                );
+                context.Questions.Add(new Question 
+                    { Title = "6What are the three main ways to add CSS to a webpage? Describe the advantages and disadvantages of each method.", 
+                        Answer = context.Answers.FirstOrDefault(a => a.Id == 3), Category = context.Categories.FirstOrDefault(c => c.Id == 1)}
+                );
+                context.Questions.Add(new Question 
+                    { Title = "7What are the three main ways to add CSS to a webpage? Describe the advantages and disadvantages of each method.", 
+                        Answer = context.Answers.FirstOrDefault(a => a.Id == 3), Category = context.Categories.FirstOrDefault(c => c.Id == 1)}
+                );
+                context.Questions.Add(new Question 
+                    { Title = "8What are the three main ways to add CSS to a webpage? Describe the advantages and disadvantages of each method.", 
+                        Answer = context.Answers.FirstOrDefault(a => a.Id == 3), Category = context.Categories.FirstOrDefault(c => c.Id == 1)}
+                );
+                context.Questions.Add(new Question 
+                    { Title = "9What are the three main ways to add CSS to a webpage? Describe the advantages and disadvantages of each method.", 
+                        Answer = context.Answers.FirstOrDefault(a => a.Id == 3), Category = context.Categories.FirstOrDefault(c => c.Id == 1)}
+                );
+                context.Questions.Add(new Question 
+                    { Title = "10What are the three main ways to add CSS to a webpage? Describe the advantages and disadvantages of each method.", 
+                        Answer = context.Answers.FirstOrDefault(a => a.Id == 3), Category = context.Categories.FirstOrDefault(c => c.Id == 1)}
+                );
+                context.Questions.Add(new Question 
+                    { Title = "11What are the three main ways to add CSS to a webpage? Describe the advantages and disadvantages of each method.", 
+                        Answer = context.Answers.FirstOrDefault(a => a.Id == 3), Category = context.Categories.FirstOrDefault(c => c.Id == 1)}
+                );
+                context.Questions.Add(new Question 
+                    { Title = "12What are the three main ways to add CSS to a webpage? Describe the advantages and disadvantages of each method.", 
+                        Answer = context.Answers.FirstOrDefault(a => a.Id == 3), Category = context.Categories.FirstOrDefault(c => c.Id == 1)}
+                );
+                context.Questions.Add(new Question 
+                    { Title = "13What are the three main ways to add CSS to a webpage? Describe the advantages and disadvantages of each method.", 
+                        Answer = context.Answers.FirstOrDefault(a => a.Id == 3), Category = context.Categories.FirstOrDefault(c => c.Id == 1)}
+                );
+                context.Questions.Add(new Question 
+                    { Title = "14What are the three main ways to add CSS to a webpage? Describe the advantages and disadvantages of each method.", 
+                        Answer = context.Answers.FirstOrDefault(a => a.Id == 3), Category = context.Categories.FirstOrDefault(c => c.Id == 1)}
+                );
+                context.Questions.Add(new Question 
+                    { Title = "15What are the three main ways to add CSS to a webpage? Describe the advantages and disadvantages of each method.", 
                         Answer = context.Answers.FirstOrDefault(a => a.Id == 3), Category = context.Categories.FirstOrDefault(c => c.Id == 1)}
                 );
 
                 context.SaveChanges();
+            }
+
+            if(!context.Comments.Any()) {
+              context.Comments.Add(new Comment{ Content="This is right!", Question = context.Questions.FirstOrDefault(r => r.Id == 1) });
+              context.Comments.Add(new Comment{ Content="This is the best answer!", Question = context.Questions.FirstOrDefault(r => r.Id == 1) });
+              context.Comments.Add(new Comment{ Content="Thanks for the infromation, it was useful!", Question = context.Questions.FirstOrDefault(r => r.Id == 1) });
+
+              context.SaveChanges();
             }
         }
     }

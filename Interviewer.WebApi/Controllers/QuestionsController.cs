@@ -18,22 +18,38 @@ namespace Interviewer.WebApi.Controllers
         [HttpGet("all")]
         public IActionResult getAllQuestions()
         {
-            // int itemsPerPage = 3;
-            // if (page >= 1) {
-              var questions = this.context.Questions
-                .Include(q => q.Answer)
-                .ToList();
+            var questions = this.context.Questions
+              .Include(q => q.Answer)
+              .Include(q => q.Comments)
+              .ToList();
 
-              return new JsonResult(new Dictionary<string, List<Question>>
-              {
-                  { "questions", questions}
-              });
-            // }
+            return new JsonResult(new Dictionary<string, List<Question>>
+            {
+                { "questions", questions}
+            });
+        }
 
-            // return new JsonResult(new Dictionary<string, List<Question>>
-            //   {
-            //       { "questions", new List<Question>() }
-            //   });
+        [HttpGet("comments")]
+        public IActionResult getCommentsByQuestions([FromQuery] int id) 
+        {
+            var question = this.context.Questions
+              .FirstOrDefault(q => q.Id == id);
+
+            if(question == null) 
+            {
+                return new JsonResult(new Dictionary<string, object>
+                {
+                    { "success", false },
+                    { "error", "This quesiton is not exist!" }
+                });
+            }
+  
+            var comments = this.context.Comments.Where(c => c.QuestionId == question.Id).ToList();
+
+            return new JsonResult(new Dictionary<string, List<Comment>>
+            {
+                { "comments", comments }
+            });         
         }
     }
 }
