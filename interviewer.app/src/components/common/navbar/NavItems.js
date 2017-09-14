@@ -18,8 +18,8 @@ class NavItems extends Component {
       navitemElements = this.state.navitemHrefs.map((element, index) => (
         <li className='menu-item' key={index}>
           <NavItem
-            navItemHref={this.state.navitemHrefs[index].navItemHref}
-            navItemTitle={this.state.navitemTitles[index].navitemTitle}
+            href={this.state.navitemHrefs[index].navItemHref}
+            title={this.state.navitemTitles[index].navitemTitle}
             iconClassName={this.state.iconClasses[index].iconClass} />
         </li>
       ))
@@ -27,8 +27,8 @@ class NavItems extends Component {
       navitemElements = this.state.navitemHrefs.map((element, index) => (
         <li className='menu-item' key={index}>
           <NavItem
-            navItemHref={this.state.navitemHrefs[index].navItemHref}
-            navItemTitle={this.state.navitemTitles[index].navitemTitle}
+            href={this.state.navitemHrefs[index].navItemHref}
+            title={this.state.navitemTitles[index].navitemTitle}
             navItemText={this.state.navItemTexts[index].navItemText} />
         </li>
       ))

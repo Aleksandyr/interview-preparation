@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom'
 import Icon from './Icon'
+import AnchorLink from '../form/AnchorLink'
 
 class NavItem extends Component {
   constructor (props) {
@@ -24,9 +24,7 @@ class NavItem extends Component {
 
     return (
       <div>
-        <a className='smoothScroll' href={this.state.navItemHref} title={this.state.navItemTitle}>
-          { renderedElement }
-        </a>
+        <AnchorLink className='smoothScroll' {...this.props} content={renderedElement} />
       </div>
     )
   }

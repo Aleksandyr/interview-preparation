@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
-// import queryString from 'query-string'
 import QuestionItem from './QuestionItem'
 import QuestionActions from '../../actions/QuestionActions'
 import QuestionStore from '../../stores/QuestionStore'
 import Pagination from '../pagination/Pagination'
+import Auth from '../common/user/Auth'
 
 class InterviewQuestions extends Component {
   constructor (props) {
@@ -14,11 +14,13 @@ class InterviewQuestions extends Component {
 
     this.state = {
       questions: [],
+      comments: [],
       pageOfItems: []
     }
 
     this.onChangePage = this.onChangePage.bind(this)
     this.handleFetchedQuestions = this.handleFetchedQuestions.bind(this)
+    this.voteForQuestion = this.voteForQuestion.bind(this)
 
     QuestionStore.on(
       QuestionStore.eventTypes.FETCHED_ALL_QUESTIONS,
@@ -32,10 +34,17 @@ class InterviewQuestions extends Component {
 
   handleFetchedQuestions (data) {
     this.setState({questions: data.questions})
+    this.setState({comments: data.questions.comments})
   }
 
   onChangePage (pageOfItems) {
     this.setState({ pageOfItems: pageOfItems })
+  }
+
+  voteForQuestion () {
+    if (!Auth.isUserAuthenticated()) {
+      this.props.history.push('/login')
+    }
   }
 
   componentWillUnmount () {
@@ -51,8 +60,8 @@ class InterviewQuestions extends Component {
         <section id='interview-questions' name='resume' />
         <div className='list-group'>
           {this.state.pageOfItems.map(element =>
-            <QuestionItem history={this.props.history} key={element.id} questionText={element.title}
-              answerText={element.answer.content} />
+            <QuestionItem key={element.id} questionText={element.title}
+              answerText={element.answer.content} voteForQuestion={this.voteForQuestion} question={element} />
           )}
           <Pagination items={this.state.questions} onChangePage={this.onChangePage} />
         </div>
