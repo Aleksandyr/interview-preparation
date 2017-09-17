@@ -457,3 +457,12 @@ sm {
   margin-top: 20px;
 	
 }
+
+.show-comments {
+  padding: 0px;
+}
+
+.show-comments-text {
+  text-transform: none;
+  color: lightgray;
+}

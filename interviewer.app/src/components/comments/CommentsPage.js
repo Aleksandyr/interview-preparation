@@ -1,11 +1,11 @@
 import React from 'react'
 
-const CommentsPage = () => (
-  <div className='container'>
+const CommentsPage = (props) => (
+  <div className={props.disabled ? 'container disabled' : 'container'} >
     <div className='row'>
       <div className='col-md-8'>
         <div className='page-header'>
-          <h1><small className='pull-right'>45 comments</small> Comments </h1>
+          <h1><small className='pull-right'>{props.comments.length}</small> Comments </h1>
         </div>
         <div className='comments-list'>
           <div className='media'>
