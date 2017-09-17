@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Identity;
+
 namespace Interviewer.WebApi.Models
 {    
     public class Comment
@@ -13,5 +15,7 @@ namespace Interviewer.WebApi.Models
         public int QuestionId { get; set; }
 
         public Question Question { get; set; }
+
+        public IdentityUser User { get; set; }
     }
 }

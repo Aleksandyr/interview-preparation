@@ -30,7 +30,7 @@ namespace Interviewer.WebApi.Controllers
         }
 
         [HttpGet("comments")]
-        public IActionResult getCommentsByQuestions([FromQuery] int id) 
+        public IActionResult getCommentsByQuestion([FromQuery] int id) 
         {
             var question = this.context.Questions
               .FirstOrDefault(q => q.Id == id);
@@ -44,7 +44,7 @@ namespace Interviewer.WebApi.Controllers
                 });
             }
   
-            var comments = this.context.Comments.Where(c => c.QuestionId == question.Id).ToList();
+            var comments = this.context.Comments.Where(c => c.QuestionId == question.Id).Include(c => c.User).ToList();
 
             return new JsonResult(new Dictionary<string, List<Comment>>
             {

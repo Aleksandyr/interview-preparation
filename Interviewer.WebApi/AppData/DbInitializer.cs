@@ -2,12 +2,17 @@ namespace Interviewer.WebApi.AppData
 {
     using System.Linq;
     using Interviewer.WebApi.Models;
+  using Microsoft.AspNetCore.Identity;
 
-    public static class DbInitializer
+  public static class DbInitializer
     {
         public static void Initialize(ApplicationDbContext context)
         {
             context.Database.EnsureCreated();
+
+            if(!context.Users.Any()) {
+              context.Users.Add(new IdentityUser { Email="user@user.gmail.com", PasswordHash="$2y$10$kd7FU5rKbiT9FD7DpJc4Fea.THM9oO2xJdMJ4vtfzE1RB0PaSTup." });
+            }
 
             if(!context.Categories.Any()) 
             {
@@ -117,9 +122,15 @@ namespace Interviewer.WebApi.AppData
             }
 
             if(!context.Comments.Any()) {
-              context.Comments.Add(new Comment{ Content="This is right!", Question = context.Questions.FirstOrDefault(r => r.Id == 1) });
-              context.Comments.Add(new Comment{ Content="This is the best answer!", Question = context.Questions.FirstOrDefault(r => r.Id == 1) });
-              context.Comments.Add(new Comment{ Content="Thanks for the infromation, it was useful!", Question = context.Questions.FirstOrDefault(r => r.Id == 1) });
+              context.Comments.Add(new Comment{ Content="This is right!", 
+                  Question = context.Questions.FirstOrDefault(r => r.Id == 1), 
+                  User = context.Users.FirstOrDefault(u => u.Email.Equals("user@user.gmail.com")) });
+              context.Comments.Add(new Comment{ Content="This is the best answer!",
+                  Question = context.Questions.FirstOrDefault(r => r.Id == 1),
+                  User = context.Users.FirstOrDefault(u => u.Email.Equals("user@user.gmail.com")) });
+              context.Comments.Add(new Comment{ Content="Thanks for the infromation, it was useful!",
+                  Question = context.Questions.FirstOrDefault(r => r.Id == 1),
+                  User = context.Users.FirstOrDefault(u => u.Email.Equals("user@user.gmail.com")) });
 
               context.SaveChanges();
             }
