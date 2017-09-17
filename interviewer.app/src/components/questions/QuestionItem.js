@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import AnswerItem from './AnswerItem'
 import AnchorLink from '../common/form/AnchorLink'
 import CommentsPage from '../comments/CommentsPage'
+import QuestionAction from '../../actions/QuestionActions'
+import QuestionStore from '../../stores/QuestionStore'
 
 class QuestionItem extends Component {
   constructor (props) {
@@ -9,23 +11,51 @@ class QuestionItem extends Component {
 
     this.state = {
       question: props.question,
-      questionText: props.questionText,
-      answerText: props.answerText,
-      showHideAnswer: true,
-      showHideComments: true
+      comments: [],
+      hideAnswer: true,
+      hideComments: true
     }
+
+    this.handleFetchedComments = this.handleFetchedComments.bind(this)
+
+    QuestionStore.on(
+      QuestionStore.eventTypes.FETCHED_QUESTION_COMMENTS,
+      this.handleFetchedComments
+    )
+  }
+
+  // componentWillMount () {
+    
+  // }
+
+  handleFetchedComments (data) {
+    this.setState({comments: data.comments})
   }
 
   showAnswer () {
-    this.state.showHideAnswer === true
-        ? this.setState({showHideAnswer: false})
-        : this.setState({showHideAnswer: true})
+    this.state.hideAnswer === true
+    ? this.setState({hideAnswer: false})
+    : this.setState({hideAnswer: true})
   }
 
   showAllComments () {
-    this.state.showHideComments === true
-      ? this.setState({showHideComments: false})
-      : this.setState({showHideComments: true})
+    // this.state.hideComments === true
+    // ? this.setState({hideComments: false})
+    // : this.setState({hideComments: true})
+
+    if (this.state.hideComments) {
+      QuestionAction.commentsByQuestion(this.state.question.id)
+      this.setState({hideComments: false})
+    } else {
+      this.setState({hideComments: true})
+    }
+  }
+
+  componentWillUnmount () {
+    QuestionStore.removeListener(
+      QuestionStore.eventTypes.FETCHED_QUESTION_COMMENTS,
+      this.handleFetchedComments
+    )
   }
 
   render () {
@@ -34,18 +64,18 @@ class QuestionItem extends Component {
         <div className='question-container bg-cloud'>
           <span className='question-mark font-gotham-medium text-grass'>Q</span>
           <div className='question-inner-container bg-cloud'>
-            <p className='mb-1 question-text text-left'>{this.state.questionText}</p>
+            <p className='mb-1 question-text text-left'>{this.state.question.title}</p>
           </div>
 
-          <AnswerItem answerText={this.state.answerText} disabled={this.state.showHideAnswer} />
+          <AnswerItem answerText={this.state.question.answer.content} disabled={this.state.hideAnswer} />
 
           <div className='control-group'>
             <div className='controls align-right'>
               <AnchorLink className='answer-toggling text-grass push-top'
                 onClickMethod={this.showAnswer.bind(this)} content={(
                   <span>
-                    <span className={!this.state.showHideAnswer ? 'see-answer disabled' : 'see-answer'}>See The Answer</span>
-                    <span className={this.state.showHideAnswer ? 'hide-answer disabled' : 'hide-answer'}>Hide The Answer</span>
+                    <span className={!this.state.hideAnswer ? 'see-answer disabled' : 'see-answer'}>See The Answer</span>
+                    <span className={this.state.hideAnswer ? 'hide-answer disabled' : 'hide-answer'}>Hide The Answer</span>
                   </span>
                 )} />
               <AnchorLink className='delete_add btn btn-inverse btn-medium push-top'
@@ -63,7 +93,7 @@ class QuestionItem extends Component {
             </div>
           </div>
         </div>
-        <CommentsPage disabled={this.state.showHideComments} comments={this.state.question.comments} />
+        <CommentsPage disabled={this.state.hideComments} comments={this.state.comments} />
       </div>
     )
   }

@@ -60,8 +60,7 @@ class InterviewQuestions extends Component {
         <section id='interview-questions' name='resume' />
         <div className='list-group'>
           {this.state.pageOfItems.map(element =>
-            <QuestionItem key={element.id} questionText={element.title}
-              answerText={element.answer.content} voteForQuestion={this.voteForQuestion} question={element} />
+            <QuestionItem key={element.id} voteForQuestion={this.voteForQuestion} question={element} />
           )}
           <Pagination items={this.state.questions} onChangePage={this.onChangePage} />
         </div>

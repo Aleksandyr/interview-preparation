@@ -10,10 +10,19 @@ class QuestionStore extends EventEmitter {
       .then(data => this.emit(this.eventTypes.FETCHED_ALL_QUESTIONS, data))
   }
 
+  commentsByQuesiton (id) {
+    QuestionData
+      .commentsByQuestion(id)
+      .then(data => this.emit(this.eventTypes.FETCHED_QUESTION_COMMENTS, data))
+  }
+
   handleAction (action) {
     switch (action.type) {
       case QuestionActions.types.ALL_QUESTIONS:
         this.allQuestions()
+        break
+      case QuestionActions.types.COMMENTS_BY_QUESTION:
+        this.commentsByQuesiton(action.id)
         break
       default: break
     }
@@ -23,7 +32,8 @@ class QuestionStore extends EventEmitter {
 let questionStore = new QuestionStore()
 
 questionStore.eventTypes = {
-  FETCHED_ALL_QUESTIONS: 'fetched_all_questions'
+  FETCHED_ALL_QUESTIONS: 'fetched_all_questions',
+  FETCHED_QUESTION_COMMENTS: 'fetched_quesiton_comments'
 }
 
 dispatcher.register(questionStore.handleAction.bind(questionStore))
