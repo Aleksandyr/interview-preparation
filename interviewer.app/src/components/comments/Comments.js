@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import CommentItem from './CommentItem'
 
 class Comments extends Component {
+  // eslint-disable-next-line
   constructor (props) {
     super(props)
   }
 
   render () {
     let comments = 'There are no comments!'
-    if (this.props.comments.length > 0) {
+    if (this.props.comments[0]) {
       comments = this.props.comments.map(element => (
         <CommentItem key={element.id} comment={element} />
       ))

@@ -3,7 +3,7 @@ import AnswerItem from './AnswerItem'
 import AnchorLink from '../common/form/AnchorLink'
 import CommentsPage from '../comments/CommentsPage'
 import QuestionAction from '../../actions/QuestionActions'
-import QuestionStore from '../../stores/QuestionStore'
+// import QuestionStore from '../../stores/QuestionStore'
 
 class QuestionItem extends Component {
   constructor (props) {
@@ -16,21 +16,22 @@ class QuestionItem extends Component {
       hideComments: true
     }
 
-    this.handleFetchedComments = this.handleFetchedComments.bind(this)
+    // this.handleFetchedComments = this.handleFetchedComments.bind(this)
+    this.showAllComments = this.showAllComments.bind(this)
 
-    QuestionStore.on(
-      QuestionStore.eventTypes.FETCHED_QUESTION_COMMENTS,
-      this.handleFetchedComments
-    )
+    // QuestionStore.on(
+    //   QuestionStore.eventTypes.FETCHED_QUESTION_COMMENTS,
+    //   this.handleFetchedComments
+    // )
   }
 
-  // componentWillMount () {
-    
+  componentWillMount () {
+    // QuestionAction.commentsByQuestion(this.state.question.id)
+  }
+
+  // handleFetchedComments (data) {
+  //   this.setState({comments: data.comments})
   // }
-
-  handleFetchedComments (data) {
-    this.setState({comments: data.comments})
-  }
 
   showAnswer () {
     this.state.hideAnswer === true
@@ -38,25 +39,26 @@ class QuestionItem extends Component {
     : this.setState({hideAnswer: true})
   }
 
-  showAllComments () {
+  showAllComments (e) {
+    // e.preventDefault()
     // this.state.hideComments === true
     // ? this.setState({hideComments: false})
     // : this.setState({hideComments: true})
 
     if (this.state.hideComments) {
-      QuestionAction.commentsByQuestion(this.state.question.id)
+      // QuestionAction.commentsByQuestion(this.state.question.id)
       this.setState({hideComments: false})
     } else {
       this.setState({hideComments: true})
     }
   }
 
-  componentWillUnmount () {
-    QuestionStore.removeListener(
-      QuestionStore.eventTypes.FETCHED_QUESTION_COMMENTS,
-      this.handleFetchedComments
-    )
-  }
+  // componentWillUnmount () {
+  //   QuestionStore.removeListener(
+  //     QuestionStore.eventTypes.FETCHED_QUESTION_COMMENTS,
+  //     this.handleFetchedComments
+  //   )
+  // }
 
   render () {
     return (
@@ -85,7 +87,7 @@ class QuestionItem extends Component {
                   </span>
                 )} />
               <AnchorLink className='push-top btn btn-inverse show-comments'
-                onClickMethod={this.showAllComments.bind(this)} content={(
+                onClickMethod={() => { this.showAllComments() }} content={(
                   <span className='pull-right'>
                     <p className='show-comments-text'>Show all comments</p>
                   </span>
@@ -93,7 +95,7 @@ class QuestionItem extends Component {
             </div>
           </div>
         </div>
-        <CommentsPage disabled={this.state.hideComments} comments={this.state.comments} />
+        <CommentsPage disabled={this.state.hideComments} comments={this.state.question.comments} questionId={this.state.question.id} />
       </div>
     )
   }

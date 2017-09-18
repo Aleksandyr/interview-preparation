@@ -14,7 +14,7 @@ class InterviewQuestions extends Component {
 
     this.state = {
       questions: [],
-      comments: [],
+      // comments: [],
       pageOfItems: []
     }
 
@@ -34,7 +34,7 @@ class InterviewQuestions extends Component {
 
   handleFetchedQuestions (data) {
     this.setState({questions: data.questions})
-    this.setState({comments: data.questions.comments})
+    // this.setState({comments: data.questions.comments})
   }
 
   onChangePage (pageOfItems) {
