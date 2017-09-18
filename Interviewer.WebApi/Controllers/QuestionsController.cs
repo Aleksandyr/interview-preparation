@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Interviewer.WebApi.AppData;
 using Interviewer.WebApi.Models;
+using Interviewer.WebApi.Models.OutputModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,14 +19,20 @@ namespace Interviewer.WebApi.Controllers
         [HttpGet("all")]
         public IActionResult getAllQuestions()
         {
-            var questions = this.context.Questions
+            QuestionsAndComments result = new QuestionsAndComments();
+          
+            result.Questions = this.context.Questions
               .Include(q => q.Answer)
               .Include(q => q.Comments)
               .ToList();
 
-            return new JsonResult(new Dictionary<string, List<Question>>
+            result.Questions.ForEach(q => {
+              q.Comments.Add(context.Comments.Include(c => c.User).FirstOrDefault(c => c.QuestionId == q.Id));
+            });
+
+            return new JsonResult(new Dictionary<string, object>
             {
-                { "questions", questions}
+                { "questions", result.Questions}
             });
         }
 
