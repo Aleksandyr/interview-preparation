@@ -2,8 +2,6 @@ import React, {Component} from 'react'
 import AnswerItem from './AnswerItem'
 import AnchorLink from '../common/form/AnchorLink'
 import CommentsPage from '../comments/CommentsPage'
-import QuestionAction from '../../actions/QuestionActions'
-// import QuestionStore from '../../stores/QuestionStore'
 
 class QuestionItem extends Component {
   constructor (props) {
@@ -11,27 +9,10 @@ class QuestionItem extends Component {
 
     this.state = {
       question: props.question,
-      comments: [],
       hideAnswer: true,
       hideComments: true
     }
-
-    // this.handleFetchedComments = this.handleFetchedComments.bind(this)
-    this.showAllComments = this.showAllComments.bind(this)
-
-    // QuestionStore.on(
-    //   QuestionStore.eventTypes.FETCHED_QUESTION_COMMENTS,
-    //   this.handleFetchedComments
-    // )
   }
-
-  componentWillMount () {
-    // QuestionAction.commentsByQuestion(this.state.question.id)
-  }
-
-  // handleFetchedComments (data) {
-  //   this.setState({comments: data.comments})
-  // }
 
   showAnswer () {
     this.state.hideAnswer === true
@@ -39,26 +20,13 @@ class QuestionItem extends Component {
     : this.setState({hideAnswer: true})
   }
 
-  showAllComments (e) {
-    // e.preventDefault()
-    // this.state.hideComments === true
-    // ? this.setState({hideComments: false})
-    // : this.setState({hideComments: true})
-
+  showAllComments () {
     if (this.state.hideComments) {
-      // QuestionAction.commentsByQuestion(this.state.question.id)
       this.setState({hideComments: false})
     } else {
       this.setState({hideComments: true})
     }
   }
-
-  // componentWillUnmount () {
-  //   QuestionStore.removeListener(
-  //     QuestionStore.eventTypes.FETCHED_QUESTION_COMMENTS,
-  //     this.handleFetchedComments
-  //   )
-  // }
 
   render () {
     return (

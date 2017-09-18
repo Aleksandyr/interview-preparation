@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import Comments from './Comments'
-// import QuestionAction from '../../actions/QuestionActions'
-// import QuestionStore from '../../stores/QuestionStore'
 
 class CommentsPage extends Component {
   constructor (props) {
@@ -18,7 +16,7 @@ class CommentsPage extends Component {
         <div className='row'>
           <div className='col-md-8'>
             <div className='page-header'>
-              <h1><small className='pull-right'>{this.props.comments[0] ? this.props.comments.length : 0}</small> Comments </h1>
+              <h1><small className='pull-right'>{this.props.comments[0] ? this.props.comments.length : 0  }</small> Comments </h1>
             </div>
             <Comments comments={this.state.comments} />
           </div>

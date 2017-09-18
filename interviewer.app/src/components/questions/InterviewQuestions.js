@@ -9,12 +9,8 @@ class InterviewQuestions extends Component {
   constructor (props) {
     super(props)
 
-    // let query = queryString.parse(this.props.location.search)
-    // const page = parseInt(query.page, 10) || 1
-
     this.state = {
       questions: [],
-      // comments: [],
       pageOfItems: []
     }
 
@@ -34,7 +30,6 @@ class InterviewQuestions extends Component {
 
   handleFetchedQuestions (data) {
     this.setState({questions: data.questions})
-    // this.setState({comments: data.questions.comments})
   }
 
   onChangePage (pageOfItems) {
