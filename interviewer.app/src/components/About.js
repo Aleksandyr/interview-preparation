@@ -10,7 +10,7 @@ const About = () => (
             <h5>ABOUT</h5>
           </div>
           <div>
-            <p>I'm web designer & front-end developer with 7 years of professional experience. I'm interested in all kinds of visual communication, but my major focus is on designing web, mobile & tablet interfaces. I also have skills in other fields like branding, icon design or web development.</p>
+            <p>From this platform, you will fastly understood, what are common questions on every technical interview. You will fastly get prepared and also you can easly contribute to us, by proposing questions and asnwers that would be useful.</p>
           </div>
         </div>
       </div>

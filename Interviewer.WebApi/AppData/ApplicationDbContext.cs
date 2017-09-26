@@ -18,6 +18,19 @@ namespace Interviewer.WebApi.AppData
 
             builder.Entity<IdentityUser>().ToTable("Users");
             builder.Entity<IdentityRole>().ToTable("Roles");
+
+            builder.Entity<QuestionsVotes>()
+              .HasKey(t => new { t.QuestionId, t.VoteId });
+
+            builder.Entity<QuestionsVotes>()
+              .HasOne(q => q.Question)
+              .WithMany(qv => qv.QuestionsVotes)
+              .HasForeignKey(q => q.QuestionId);
+            
+            builder.Entity<QuestionsVotes>()
+              .HasOne(q => q.Vote)
+              .WithMany(qv => qv.QuestionsVotes)
+              .HasForeignKey(q => q.VoteId);
         }
         public DbSet<Category> Categories { get; set; }
 
@@ -25,6 +38,10 @@ namespace Interviewer.WebApi.AppData
 
         public DbSet<Answer> Answers { get; set; }
 
+        public DbSet<Vote> Votes { get; set; }
+
         public DbSet<Comment> Comments { get; set; }
+
+        public DbSet<QuestionsVotes> QuestionsVotes { get; set; }
     }
 }

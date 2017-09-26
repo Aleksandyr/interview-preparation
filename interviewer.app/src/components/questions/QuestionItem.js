@@ -50,8 +50,9 @@ class QuestionItem extends Component {
                 )} />
               <AnchorLink className='delete_add btn btn-inverse btn-medium push-top'
                 onClickMethod={this.props.voteForQuestion} content={(
-                  <span className='pull-right'>
+                  <span className='pull-right display-flex'>
                     <i id='like1' className='glyphicon glyphicon-thumbs-up' /> <div id='like1-bs3' />
+                    <p className='like-counter'>0</p>
                   </span>
                 )} />
               <AnchorLink className='push-top btn btn-inverse show-comments'

@@ -5,10 +5,12 @@ namespace Interviewer.WebApi.Models
     public class Question
     {
         private ICollection<Comment> comments;
+        private ICollection<QuestionsVotes> questionsVotes;
 
         public Question() 
         {
             this.comments = new HashSet<Comment>();
+            this.QuestionsVotes = new HashSet<QuestionsVotes>();
         }
 
         public int Id { get; set; }
@@ -24,5 +26,9 @@ namespace Interviewer.WebApi.Models
         public Category Category { get; set; }
         
         public ICollection<Comment> Comments { get => comments; set => comments = value; }
+
+        public int VoteCounter { get; set; }
+
+        public ICollection<QuestionsVotes> QuestionsVotes { get => this.questionsVotes; set => this.questionsVotes = value; }
     }
 }

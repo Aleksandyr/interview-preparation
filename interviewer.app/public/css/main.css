@@ -466,3 +466,13 @@ sm {
   text-transform: none;
   color: lightgray;
 }
+
+.display-flex {
+  display: flex;
+}
+
+.like-counter {
+  margin: 0px auto;
+  margin-left: 20px;
+  color: black;
+}

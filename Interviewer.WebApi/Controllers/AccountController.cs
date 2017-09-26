@@ -19,7 +19,6 @@ namespace Interviewer.WebApi.Controllers
     [Route("api/[controller]")]
     public class AccountController : BaseController
     {
-        private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly JWTSettings _options;
 
@@ -28,9 +27,8 @@ namespace Interviewer.WebApi.Controllers
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             IOptions<JWTSettings> optionsAccessor) 
-            : base(context)
+            : base(context, userManager)
         {
-            this._userManager = userManager;
             this._signInManager = signInManager;
             this._options = optionsAccessor.Value;
         }
@@ -64,7 +62,7 @@ namespace Interviewer.WebApi.Controllers
 
                 return new JsonResult(new Dictionary<string, object>
                 {
-                    { "message", result.Errors.ToList()[0].Description },
+                    { "message", Errors(result) },
                     { "success", false }
                 });
             }
@@ -125,6 +123,17 @@ namespace Interviewer.WebApi.Controllers
             return GetToken(payload);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> LogOut()
+        {
+            await _signInManager.SignOutAsync();
+            return new JsonResult(new Dictionary<string, object> 
+            {
+                {"message", "You was successful logged out!"},
+                {"success", true }
+            }) {StatusCode = 401};
+        }
         private string GetToken(Dictionary<string, object> payload)
         {
             var secret = this._options.SecretKey;
