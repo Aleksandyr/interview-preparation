@@ -2,6 +2,9 @@ import React, {Component} from 'react'
 import AnswerItem from './AnswerItem'
 import AnchorLink from '../common/form/AnchorLink'
 import CommentsPage from '../comments/CommentsPage'
+import QuestionActions from '../../actions/QuestionActions'
+import QuestionStore from '../../stores/QuestionStore'
+import Auth from '../common/user/Auth'
 
 class QuestionItem extends Component {
   constructor (props) {
@@ -12,6 +15,14 @@ class QuestionItem extends Component {
       hideAnswer: true,
       hideComments: true
     }
+
+    this.voteForQuestion = this.voteForQuestion.bind(this)
+    this.handleVotedQuestion = this.handleVotedQuestion.bind(this)
+
+    QuestionStore.on(
+      QuestionStore.eventTypes.VOTED_FOR_QUESTION,
+      this.handleVotedQuestion
+    )
   }
 
   showAnswer () {
@@ -26,6 +37,25 @@ class QuestionItem extends Component {
     } else {
       this.setState({hideComments: true})
     }
+  }
+
+  componentWillUnmount () {
+    QuestionStore.removeListener(
+      QuestionStore.eventTypes.VOTED_FOR_QUESTION,
+      this.handleVotedQuestion
+    )
+  }
+
+  voteForQuestion (data) {
+    if (!Auth.isUserAuthenticated()) {
+      this.props.history.push('/login')
+    } else {
+      QuestionActions.voteForQuestion(data.id)
+    }
+  }
+
+  handleVotedQuestion (data) {
+    debugger
   }
 
   render () {
@@ -49,7 +79,7 @@ class QuestionItem extends Component {
                   </span>
                 )} />
               <AnchorLink className='delete_add btn btn-inverse btn-medium push-top'
-                onClickMethod={this.props.voteForQuestion} content={(
+                onClickMethod={this.voteForQuestion.bind(this, this.props.question)} content={(
                   <span className='pull-right display-flex'>
                     <i id='like1' className='glyphicon glyphicon-thumbs-up' /> <div id='like1-bs3' />
                     <p className='like-counter'>0</p>

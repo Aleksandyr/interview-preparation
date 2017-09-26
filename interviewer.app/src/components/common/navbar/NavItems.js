@@ -20,6 +20,7 @@ class NavItems extends Component {
           <NavItem
             href={this.state.navitemHrefs[index].navItemHref}
             title={this.state.navitemTitles[index].navitemTitle}
+            onClickMethod={this.props.onClickMethod}
             iconClassName={this.state.iconClasses[index].iconClass} />
         </li>
       ))
@@ -29,6 +30,7 @@ class NavItems extends Component {
           <NavItem
             href={this.state.navitemHrefs[index].navItemHref}
             title={this.state.navitemTitles[index].navitemTitle}
+            onClickMethod={this.props.onClickMethod}
             navItemText={this.state.navItemTexts[index].navItemText} />
         </li>
       ))

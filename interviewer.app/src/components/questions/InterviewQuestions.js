@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import QuestionItem from './QuestionItem'
 import QuestionActions from '../../actions/QuestionActions'
 import QuestionStore from '../../stores/QuestionStore'
+import CategoryStore from '../../stores/CategoryStore'
 import Pagination from '../pagination/Pagination'
-import Auth from '../common/user/Auth'
 
 class InterviewQuestions extends Component {
   constructor (props) {
@@ -16,11 +16,15 @@ class InterviewQuestions extends Component {
 
     this.onChangePage = this.onChangePage.bind(this)
     this.handleFetchedQuestions = this.handleFetchedQuestions.bind(this)
-    this.voteForQuestion = this.voteForQuestion.bind(this)
+    this.handleFetchedQuestionsByCategory = this.handleFetchedQuestionsByCategory.bind(this)
 
     QuestionStore.on(
       QuestionStore.eventTypes.FETCHED_ALL_QUESTIONS,
       this.handleFetchedQuestions
+    )
+    CategoryStore.on(
+      CategoryStore.eventTypes.FETCHED_QUESTIONS_BY_CATEGORY,
+      this.handleFetchedQuestionsByCategory
     )
   }
 
@@ -32,20 +36,23 @@ class InterviewQuestions extends Component {
     this.setState({questions: data.questions})
   }
 
-  onChangePage (pageOfItems) {
-    this.setState({ pageOfItems: pageOfItems })
+  handleFetchedQuestionsByCategory (data) {
+    this.setState({questions: data.category.quesitons})
   }
 
-  voteForQuestion () {
-    if (!Auth.isUserAuthenticated()) {
-      this.props.history.push('/login')
-    }
+  onChangePage (pageOfItems) {
+    this.setState({ pageOfItems: pageOfItems })
   }
 
   componentWillUnmount () {
     QuestionStore.removeListener(
       QuestionStore.eventTypes.FETCHED_ALL_QUESTIONS,
       this.handleFetchedQuestions
+    )
+
+    CategoryStore.removeListener(
+      CategoryStore.eventTypes.FETCHED_QUESTIONS_BY_CATEGORY,
+      this.handleFetchedQuestionsByCategory
     )
   }
 

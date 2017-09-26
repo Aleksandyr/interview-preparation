@@ -24,7 +24,7 @@ class NavItem extends Component {
 
     return (
       <div>
-        <AnchorLink className='smoothScroll' {...this.props} content={renderedElement} />
+        <AnchorLink className='smoothScroll' {...this.props} onClickMethod={this.props.onClickMethod} content={renderedElement} />
       </div>
     )
   }

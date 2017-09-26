@@ -10,6 +10,10 @@ class QuestionData {
   static commentsByQuestion (id) {
     return Data.get(`${baseUrl}/comments/?id=${id}`)
   }
+
+  static voteForQuestion (id) {
+    return Data.post(`${baseUrl}/vote/?id=${id}`, {}, true)
+  }
 }
 
 export default QuestionData
